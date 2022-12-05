@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+
+    <script>
+        //Call The Api
+        fetch('http://localhost:3000/donuts')
+        //This basically resolves the promise
+        .then(data => {
+            return data.json();
+        })
+        //Now take the data and parse it into HTML and put it into the dynamic
+        //content div. This will of course be changed to RDS data later. 
+        .then(donuts =>{
+            let page = document.getElementById("dynamic_content")
+            console.log(donuts);
+            
+            page.innerHTML = donuts.body;
+        })
+    </script>
+
+    <title>PCHANGE ME</title>
+</head>
+<body>
+    <Header class="header">
+        <h1>Super Sweet Candy Store</h1>
+        <h2>Please take a look at the candy we have to offer</h2>
+    </Header>
+    <Main>
+        <div class="container">
+            <div class="item-container">
+                <div id="dynamic_content">
+<!--                     
+                    <div class="item">
+                        <img src="donut.jpeg"/>
+                        <p>Flavor: Super good one</p>
+                    </div> -->
+
+                </div>
+            </div>
+        </div>
+    </Main>
+</body>
+</html>
