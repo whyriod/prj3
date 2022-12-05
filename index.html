@@ -1,25 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-
+        <link rel="stylesheet" type="text/css" href="./styles.css">
     <script>
         //Call The Api
-        fetch('http://localhost:3000/donuts')
+        fetch('http://localhost:3000/iphone')
         //This basically resolves the promise
         .then(data => {
             return data.json();
         })
         //Now take the data and parse it into HTML and put it into the dynamic
-        //content div. This will of course be changed to RDS data later. 
-        .then(donuts =>{
+        //content div. This will of course be changed to RDS data later.
+        .then(iphones =>{
             let page = document.getElementById("dynamic_content")
-            console.log(donuts);
-            
-            page.innerHTML = donuts.body;
+            let htmlBuilder = "";
+            console.log(iphones[0].image_link);
+            for(let i =0;i < iphones.length; i++){
+                htmlBuilder += '<div class="item">'
+                
+                htmlBuilder += '<img src="' + iphones[i].image_link + '"/>'
+                htmlBuilder += '<p>' + iphones[i].iphone_name + '</p>'
+
+                htmlBuilder += '</div>'
+            }
+            page.innerHTML = htmlBuilder;
         })
     </script>
 
@@ -27,14 +33,14 @@
 </head>
 <body>
     <Header class="header">
-        <h1>Super Sweet Candy Store</h1>
-        <h2>Please take a look at the candy we have to offer</h2>
+        <h1>Welcome to Apple's second website</h1>
+        <h2>We are the new website that they are trying out as a test run</h2>
     </Header>
     <Main>
         <div class="container">
             <div class="item-container">
                 <div id="dynamic_content">
-<!--                     
+<!--
                     <div class="item">
                         <img src="donut.jpeg"/>
                         <p>Flavor: Super good one</p>
